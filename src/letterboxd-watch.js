@@ -1,13 +1,3 @@
-const STORAGE_KEY = "LetterboxdWatchSites";
-const storageApi = (typeof browser !== "undefined" ? browser : chrome).storage.sync;
-
-async function getSites() {
-  const result = await storageApi.get(STORAGE_KEY);
-  return result[STORAGE_KEY]?.length
-    ? result[STORAGE_KEY]
-    : DEFAULT_SITES;
-}
-
 function formatYTSpath(query) {
   let path = query;
   path = path.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Remove diacritics
@@ -59,8 +49,8 @@ const getMovieInfo = () => {
   return [(title ?? ""), (year ?? ""), imdbID]
 };
 
-// disables the script that hides the panel
 const preload = () => {
+  // disables the script that hides the panel
   const idk = document.querySelector('div[data-on-load="csi-availability"]');
   if (idk) idk.className = "";
 };
@@ -139,6 +129,12 @@ const main = () => {
 
 preload();
 
-window.onload = () => {
-  main();
-};
+const observer = new MutationObserver(() => {
+  const element = document.querySelector('#watch > div.other');
+  if (element) main();
+});
+
+observer.observe(document.body, {
+  childList: true,
+  subtree: true,
+});
