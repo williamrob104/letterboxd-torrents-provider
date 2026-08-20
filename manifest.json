@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Letterboxd Watch",
     "description": "Letterboxd extension that provides you links to movie sites",
-    "version": "1.7.1",
+    "version": "1.7.2",
     "icons": {
         "128": "icon128.png"
     },

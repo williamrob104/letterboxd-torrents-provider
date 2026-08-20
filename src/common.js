@@ -17,11 +17,15 @@ const DEFAULT_SITES = [
   },
   {
     name: 'The Pirate Bay',
-    urlTemplate: 'thepiratebay.org/search.php?q={{imdb_id}}&video=on'
+    urlTemplate: 'thepiratebay.org/search.php?q=tt{{imdbid}}&video=on'
   },
   {
     name: 'Youtube',
     urlTemplate: 'www.youtube.com/results?search_query={{title}} {{year}}'
+  },
+  {
+    name: 'OpenSubtitles',
+    urlTemplate: 'www.opensubtitles.org/en/search/sublanguageid-eng/imdbid-{{imdbid}}'
   },
 ];
 

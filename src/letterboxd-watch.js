@@ -34,7 +34,7 @@ const getServices = async (title, year, imdbID) => {
     query: query,
     title: title,
     year: year,
-    imdb_id: imdbID,
+    imdbid: imdbID,
     yts_query: formatYTSpath(query),
   };
 
@@ -54,7 +54,7 @@ const getMovieInfo = () => {
   const year = details?.querySelector(".releasedate > a")?.innerText;
 
   const url = document.querySelector(".micro-button")?.href;
-  const imdbID = url.split("/")[4];
+  const imdbID = url.split("/")[4].replace(/^tt/, '');
 
   return [(title ?? ""), (year ?? ""), imdbID]
 };
